@@ -1,13 +1,14 @@
 #' @title 肠道菌群MR工具
+#' @param name 学号
+#' @param key 密码
 #' @param savefile 设置一个保存结果的文件夹名字
 #' @param PATH 切分的肠道菌群暴露文件位置
 #' @param GWASsummay 本地结局的预处理好的GWAS summay
 #' @param kb 聚类距离
 #' @param r2 相关系数
 #' @param outname 本地结局的名称
-#'
 #' @export
-Gut_local<-function(savefile,PATH,GWASsummay,outname,kb,r2){
+Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
   A<-name
   A<-as.numeric(gsub("DK","00",A))
   C<-A+key
