@@ -22,7 +22,8 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
   for (i in filename[,1]){
       ipath<-paste0(PATH,"\\",i)
       exp_temp<-read.csv(ipath,header = T)
-      exp_temp<-clump_data(exp_temp,clump_kb = kb,clump_r2 = r2)
+      test2<-(try(exp_temp<-clump_data(exp_temp,clump_kb = kb,clump_r2 = r2)))
+      if(class(test2) == "NULL"){
       total<-merge(GWASsummay,exp_temp,by="SNP")
       total$eaf.exposure<-total$eaf.outcome
       total$effect_allele.exposure<-total$effect_allele.outcome
@@ -34,7 +35,18 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
                      "pval.outcome","id.outcome","outcome","eaf.outcome")]
       #去除回文
       dat<-harmonise_data(exposure_dat=exp3,outcome_dat=out3,action=2)
-      res <- mr(dat)
+      res <- mr(dat)}else{total<-merge(GWASsummay,exp_temp,by="SNP")
+      total$eaf.exposure<-total$eaf.outcome
+      total$effect_allele.exposure<-total$effect_allele.outcome
+      total$other_allele.exposure<-total$other_allele.outcome
+      #分别取出暴露与结局的数据
+      exp3<-total[,c("SNP","effect_allele.exposure","other_allele.exposure","beta.exposure","se.exposure",
+                     "pval.exposure","id.exposure","exposure", "eaf.exposure")]
+      out3<-total[,c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome",
+                     "pval.outcome","id.outcome","outcome","eaf.outcome")]
+      #去除回文
+      dat<-harmonise_data(exposure_dat=exp3,outcome_dat=out3,action=2)
+      res <- mr(dat)}
       if(dim(res)[[1]]!=0){
       het <- mr_heterogeneity(dat)
       ple <- mr_pleiotropy_test(dat)
