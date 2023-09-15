@@ -4,9 +4,13 @@
 \alias{Gut_local}
 \title{肠道菌群MR工具}
 \usage{
-Gut_local(savefile, PATH, GWASsummay, outname, kb, r2)
+Gut_local(name, key, savefile, PATH, GWASsummay, outname, kb, r2)
 }
 \arguments{
+\item{name}{学号}
+
+\item{key}{密码}
+
 \item{savefile}{设置一个保存结果的文件夹名字}
 
 \item{PATH}{切分的肠道菌群暴露文件位置}
