@@ -19,9 +19,10 @@ for (i in filename[,1]){
   exp_temp<-read.csv(ipath,header = T)
   exp_temp<-clump_data(exp_temp,clump_kb = kb,clump_r2 = r2)
   #获取结局数据的工具变量--Lung cancer
-  test2<-(try(OUT<-extract_outcome_data(snps=exp_temp$SNP,outcomes=GWASID,proxies=F,maf_threshold = 0.01,access_token = NULL)))
-  if(class(test2) == "NULL"){
-   OUT<-extract_outcome_data(snps=exp_temp$SNP,outcomes=GWASID,proxies=F,maf_threshold = 0.01,access_token = NULL)
+  test2<-(try(OUT<-extract_outcome_data(snps=exp_temp$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)))
+  if(class(test2) == "try-error"){
+   OUT<-extract_outcome_data(snps=exp_temp$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+   if(dim(OUT)[[1]]!=0){
    OUT$id.outcome<-outname
    OUT$outcome<-outname
    OUT<-OUT[!duplicated(OUT$SNP),]
@@ -47,6 +48,9 @@ for (i in filename[,1]){
    write.csv(A_temp,Aname,row.names = F)
    write.csv(B_temp,Bname,row.names = F)
    write.csv(C_temp,Cname,row.names = F)}else{
+     cat(i,"与",outname,"未找到工具变量不进行计算")}
+   }else{
+  if(dim(OUT)[[1]]!=0){
   OUT$id.outcome<-outname
   OUT$outcome<-outname
   OUT<-OUT[!duplicated(OUT$SNP),]
@@ -71,8 +75,10 @@ for (i in filename[,1]){
       Cname<-paste0(savefile,"\\","肠道菌群与",outname,"的多效性结果.csv")
       write.csv(A_temp,Aname,row.names = F)
       write.csv(B_temp,Bname,row.names = F)
-      write.csv(C_temp,Cname,row.names = F)}
+      write.csv(C_temp,Cname,row.names = F)}else{
+        cat(i,"与",outname,"未找到工具变量不进行计算")}
+   }
   }
-  cat("当前分析已完成请前往肠道菌群MR结果文件夹下查看结果")
+    cat("当前分析已完成请前往肠道菌群MR结果文件夹下查看结果")
 }
 
