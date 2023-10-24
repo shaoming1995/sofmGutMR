@@ -10,7 +10,7 @@ C<-A+key
 if(C==2310000){
 exp<-read.csv(expfilename)
 head(exp)
-colnames(exp)<-c("id.exposure","chr","pos","SNP","effect_allele.exposure","other_allele.exposure","beta.exposure","se.exposure","meta","pval.exposure","N","nn")
+colnames(exp)<-c("id.exposure","chr","pos","SNP","other_allele.exposure","effect_allele.exposure","beta.exposure","se.exposure","meta","pval.exposure","N","nn")
 exp$exposure<-exp$id.exposure
 data_class<-unique(exp$id.exposure)
 dir.create("切分好的肠道菌群暴露文件")

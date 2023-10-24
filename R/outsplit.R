@@ -9,7 +9,7 @@ outsplit<-function(name,key,outfilename){
   C<-A+key
   if(C==2310000){out<-read.csv(outfilename)
   head(out)
-  colnames(out)<-c("id.outcome","chr","pos","SNP","effect_allele.outcome","other_allele.outcome","beta.outcome","se.outcome","meta","pval.outcome","N","nn")
+  colnames(out)<-c("id.outcome","chr","pos","SNP","other_allele.outcome","effect_allele.outcome","beta.outcome","se.outcome","meta","pval.outcome","N","nn")
   out$outcome<-out$id.outcome
   data_class<-unique(out$id.outcome)
   dir.create("切分好的肠道菌群结局文件")

@@ -27,7 +27,7 @@ for (i in filename[,1]){
    OUT$outcome<-outname
    OUT<-OUT[!duplicated(OUT$SNP),]
    exp_temp_out<-merge(exp_temp,OUT,by="SNP",all=F)
-   exp_temp_out$eaf.exposure<-exp_temp_out$eaf.outcome
+   exp_temp_out$eaf.exposure<-NA
    #分别取出暴露与结局的数据
    exp<- exp_temp_out[,c("SNP","effect_allele.exposure","other_allele.exposure","beta.exposure","se.exposure",
                          "pval.exposure","id.exposure","exposure", "eaf.exposure")]

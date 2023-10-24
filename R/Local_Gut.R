@@ -27,7 +27,7 @@ Local_Gut<-function(name,key,savefile,PATH,GWASsummay,pval,expname){
     if(dim(total)[[1]]!=0){
     total<-subset(total,pval.outcome>5e-08)
     total<-total[!duplicated(total$SNP),]
-    total$eaf.outcome<-total$eaf.exposure
+    total$eaf.outcome<-NA
     #分别取出暴露与结局的数据
     EXP<-total[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure", "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure")]
     OUT<-total[,c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")]
