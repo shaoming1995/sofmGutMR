@@ -16,7 +16,7 @@ data_class<-unique(exp$id.exposure)
 dir.create("切分好的肠道菌群暴露文件")
 for (i in data_class){
   A<-subset(exp,id.exposure==i)
-  cfilename = paste0("切分好的肠道菌群暴露文件\\",i,".csv")
+  cfilename = paste0("切分好的肠道菌群暴露文件/",i,".csv")
   write.csv(A,cfilename) }
 cat("肠道菌群暴露已经完成切分")}else{
   cat("请联系客服获取账户学号和密码或微信联系SFM19950928")}

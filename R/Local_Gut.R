@@ -21,7 +21,7 @@ Local_Gut<-function(name,key,savefile,PATH,GWASsummay,pval,expname){
   if(C==2310000){
     for (i in filename[,1]){
       #在结局GWAS summary中寻找与暴露吸烟对应的SNPs
-      ipath<-paste0(PATH,"\\",i)
+      ipath<-paste0(PATH,"/",i)
       OUT_temp<-read.csv(ipath,header = T)
       total<-merge(OUT_temp,exp,by="SNP",all = F)
     if(dim(total)[[1]]!=0){
@@ -40,9 +40,9 @@ Local_Gut<-function(name,key,savefile,PATH,GWASsummay,pval,expname){
     B_temp<-rbind(het,B_temp)
     C_temp<-rbind(ple,C_temp)
     print(paste0("当前运行到",i,"文件"))
-    Aname<-paste0(savefile,"\\",expname,"与肠道菌群","的MR结果.csv")
-    Bname<-paste0(savefile,"\\",expname,"与肠道菌群","的异质性结果.csv")
-    Cname<-paste0(savefile,"\\",expname,"与肠道菌群","的多效性结果.csv")
+    Aname<-paste0(savefile,"/",expname,"与肠道菌群","的MR结果.csv")
+    Bname<-paste0(savefile,"/",expname,"与肠道菌群","的异质性结果.csv")
+    Cname<-paste0(savefile,"/",expname,"与肠道菌群","的多效性结果.csv")
     write.csv(A_temp,Aname,row.names = F)
     write.csv(B_temp,Bname,row.names = F)
     write.csv(C_temp,Cname,row.names = F)

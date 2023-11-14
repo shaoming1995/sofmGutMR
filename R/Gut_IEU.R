@@ -15,11 +15,11 @@ Gut_IEU<-function(savefile,PATH,GWASID,outname,kb,r2){
   B_temp<-c()
   C_temp<-c()
 for (i in filename[,1]){
-  ipath<-paste0(PATH,"\\",i)
+  ipath<-paste0(PATH,"/",i)
   exp_temp<-read.csv(ipath,header = T)
   test2 <- (try(exp_temp1 <- clump_data(exp_temp, clump_kb = kb,
                                        clump_r2 = r2)))
-  if (class(test2) == "try-error") {
+  if (class(test2) != "try-error") {
    OUT<-extract_outcome_data(snps=exp_temp1$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
    if(dim(OUT)[[1]]!=0){
    OUT$id.outcome<-outname
@@ -47,15 +47,16 @@ for (i in filename[,1]){
    B_temp<-rbind(het,B_temp)
    C_temp<-rbind(ple,C_temp)
    print(paste0("当前运行到",i,"文件"))
-   Aname<-paste0(savefile,"\\","肠道菌群与",outname,"的MR结果.csv")
-   Bname<-paste0(savefile,"\\","肠道菌群与",outname,"的异质性结果.csv")
-   Cname<-paste0(savefile,"\\","肠道菌群与",outname,"的多效性结果.csv")
+   Aname<-paste0(savefile,"/","肠道菌群与",outname,"的MR结果.csv")
+   Bname<-paste0(savefile,"/","肠道菌群与",outname,"的异质性结果.csv")
+   Cname<-paste0(savefile,"/","肠道菌群与",outname,"的多效性结果.csv")
    write.csv(A_temp,Aname,row.names = F)
    write.csv(B_temp,Bname,row.names = F)
    write.csv(C_temp,Cname,row.names = F)}
    else{
      cat(i,"与",outname,"未找到工具变量不进行计算")}}
   else{
+    cat(i,"由于网络502问题未完成clump")
   OUT<-extract_outcome_data(snps=exp_temp$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
   if(dim(OUT)[[1]]!=0){
   OUT$id.outcome<-outname
@@ -83,9 +84,9 @@ for (i in filename[,1]){
       B_temp<-rbind(het,B_temp)
       C_temp<-rbind(ple,C_temp)
       print(paste0("当前运行到",i,"文件"))
-      Aname<-paste0(savefile,"\\","肠道菌群与",outname,"的MR结果.csv")
-      Bname<-paste0(savefile,"\\","肠道菌群与",outname,"的异质性结果.csv")
-      Cname<-paste0(savefile,"\\","肠道菌群与",outname,"的多效性结果.csv")
+      Aname<-paste0(savefile,"/","肠道菌群与",outname,"的MR结果.csv")
+      Bname<-paste0(savefile,"/","肠道菌群与",outname,"的异质性结果.csv")
+      Cname<-paste0(savefile,"/","肠道菌群与",outname,"的多效性结果.csv")
       write.csv(A_temp,Aname,row.names = F)
       write.csv(B_temp,Bname,row.names = F)
       write.csv(C_temp,Cname,row.names = F)}else{

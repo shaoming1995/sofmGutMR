@@ -15,7 +15,7 @@ outsplit<-function(name,key,outfilename){
   dir.create("切分好的肠道菌群结局文件")
   for (i in data_class){
     A<-subset(out,id.outcome==i)
-    cfilename = paste0("切分好的肠道菌群结局文件\\",i,".csv")
+    cfilename = paste0("切分好的肠道菌群结局文件/",i,".csv")
     write.csv(A,cfilename) }
   cat("肠道菌群结局已经完成切分")}else{
     cat("请联系客服获取账户学号和密码或微信联系SFM19950928")}

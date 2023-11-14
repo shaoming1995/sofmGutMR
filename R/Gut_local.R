@@ -21,11 +21,12 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
       C_temp <- c()
       D_temp <- c()
       for (i in filename[, 1]) {
-        ipath <- paste0(PATH, "\\", i)
+        ipath <- paste0(PATH, "/", i)
         exp_temp <- read.csv(ipath, header = T)
         test2 <- (try(exp_temp <- clump_data(exp_temp, clump_kb = kb,
                                              clump_r2 = r2)))
         if (class(test2) == "try-error") {
+          cat(i,"由于网络502问题未完成clump")
           total <- merge(GWASsummay, exp_temp, by = "SNP")
           total$eaf.exposure <- NA   #修改这里，让从本地和IEU数据库获得的菌群数据一致
           exp3 <- total[, c("SNP", "effect_allele.exposure",
@@ -87,13 +88,13 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
           C_temp <- rbind(ple, C_temp)
           D_temp <- rbind(data_h_TableS1, D_temp)
           print(paste0("当前运行到", i, "文件"))
-          Aname <- paste0(savefile, "\\", "肠道菌群与",
+          Aname <- paste0(savefile, "/", "肠道菌群与",
                           outname, "的MR结果.csv")
-          Bname <- paste0(savefile, "\\", "肠道菌群与",
+          Bname <- paste0(savefile, "/", "肠道菌群与",
                           outname, "的异质性结果.csv")
-          Cname <- paste0(savefile, "\\", "肠道菌群与",
+          Cname <- paste0(savefile, "/", "肠道菌群与",
                           outname, "的多效性结果.csv")
-          Dname <- paste0(savefile, "\\", "肠道菌群与",
+          Dname <- paste0(savefile, "/", "肠道菌群与",
                           outname, "的SNPs情况.csv")
           write.csv(A_temp, Aname, row.names = F)
           write.csv(B_temp, Bname, row.names = F)
