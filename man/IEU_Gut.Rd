@@ -13,7 +13,7 @@ IEU_Gut(name, key, savefile, PATH, GWASID, expname, p1, r2, kb)
 
 \item{savefile}{设置一个保存结果的文件夹名字}
 
-\item{PATH}{切分的肠道菌群结局文件位置}
+\item{PATH}{GUT_outcome文件位置}
 
 \item{GWASID}{暴露的GWAS id号}
 

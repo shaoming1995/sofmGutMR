@@ -81,6 +81,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,kb,r2){
           mr_OR$OR_CI <- paste0(mr_OR$or,"(",mr_OR$or_lci95,"-",mr_OR$or_uci95,")")
         }
         if (dim(res)[[1]] != 0) {
+
           het <- mr_heterogeneity(dat)
           ple <- mr_pleiotropy_test(dat)
           A_temp <- rbind(mr_OR, A_temp)

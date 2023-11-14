@@ -4,7 +4,7 @@
 \alias{Local_Gut}
 \title{肠道菌群MR工具}
 \usage{
-Local_Gut(name, key, savefile, PATH, GWASsummay, pval, expname)
+Local_Gut(name, key, savefile, PATH, GWASIV, expname)
 }
 \arguments{
 \item{name}{学号}
@@ -13,11 +13,9 @@ Local_Gut(name, key, savefile, PATH, GWASsummay, pval, expname)
 
 \item{savefile}{设置一个保存结果的文件夹名字}
 
-\item{PATH}{切分的肠道菌群结局文件位置}
+\item{PATH}{GUT_outcome文件位置}
 
-\item{GWASsummay}{本地预处理好的暴露GWAS summay}
-
-\item{pval}{阈值}
+\item{GWASIV}{本地预处理好的暴露IV}
 
 \item{expname}{暴露的名称}
 }
