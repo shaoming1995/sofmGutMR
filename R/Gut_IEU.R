@@ -53,6 +53,8 @@ for (i in filename[,1]){
    A_temp <- rbind(mr_OR, A_temp)
    B_temp<-rbind(het,B_temp)
    C_temp<-rbind(ple,C_temp)
+   D_temp <- rbind(data_h_TableS1, D_temp)
+
    print(paste0("当前运行到",i,"文件"))
    Aname<-paste0(savefile,"/","肠道菌群与",outname,"的MR结果.csv")
    Bname<-paste0(savefile,"/","肠道菌群与",outname,"的异质性结果.csv")
@@ -93,12 +95,12 @@ for (i in filename[,1]){
       mr_OR$or_lci95<-round(mr_OR$or_lci95,3)
       mr_OR$or_uci95 <- round(mr_OR$or_uci95,3)
       mr_OR$OR_CI <- paste0(mr_OR$or,"(",mr_OR$or_lci95,"-",mr_OR$or_uci95,")")
-
       het <- mr_heterogeneity(dat)
       ple <- mr_pleiotropy_test(dat)
       A_temp <- rbind(mr_OR, A_temp)
       B_temp<-rbind(het,B_temp)
       C_temp<-rbind(ple,C_temp)
+      D_temp <- rbind(data_h_TableS1, D_temp)
       print(paste0("当前运行到",i,"文件"))
       Aname<-paste0(savefile,"/","肠道菌群与",outname,"的MR结果.csv")
       Bname<-paste0(savefile,"/","肠道菌群与",outname,"的异质性结果.csv")
